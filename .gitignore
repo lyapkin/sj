@@ -1,4 +1,4 @@
 /.venv/
 /sj/.env
-db.sqlite3
+/sj/db.sqlite3
 .idea

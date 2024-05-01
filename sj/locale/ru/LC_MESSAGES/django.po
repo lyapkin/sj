@@ -1,0 +1,96 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-01 18:02+0500\n"
+"PO-Revision-Date: 2024-05-01 23:09+0500\n"
+"Last-Translator: Anonymous User <admin@admin.admin>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\sj\sj\settings.py:154
+msgid "Russian"
+msgstr "русский"
+
+#: .\sj\sj\settings.py:155
+msgid "English"
+msgstr "английский"
+
+#: .\sj\users\models.py:12 .\sj\users\models.py:18 .\sj\users\models.py:27
+msgid "email"
+msgstr "Адрес электронной почты"
+
+#: .\sj\users\models.py:19
+msgid "emails"
+msgstr "Адреса электронной почты"
+
+#: .\sj\users\models.py:28
+msgid "username"
+msgstr "Поьзовательское имя"
+
+#: .\sj\users\models.py:29
+msgid "date_joined"
+msgstr "Дата регистрации"
+
+#: .\sj\users\models.py:30
+msgid "active"
+msgstr "Активный"
+
+#: .\sj\users\models.py:31
+msgid "staff"
+msgstr "Соотрудник"
+
+#: .\sj\users\models.py:32
+msgid "superuser"
+msgstr "Суперпользователь"
+
+#: .\sj\users\models.py:33
+msgid "last_login"
+msgstr "Дата последнего логина"
+
+#: .\sj\users\models.py:44
+msgid "user"
+msgstr "Пользователь"
+
+#: .\sj\users\models.py:45
+msgid "users"
+msgstr "Пользователи"
+
+#: .\sj\users\models.py:72
+msgid "profile_woman_sex"
+msgstr "Женский"
+
+#: .\sj\users\models.py:73
+msgid "profile_man_sex"
+msgstr "Мужской"
+
+#: .\sj\users\views.py:39
+msgid "code_not_exist"
+msgstr "Код недействителен."
+
+#: .\sj\users\views.py:43
+msgid "code_expiration"
+msgstr "Время действия кода закончилось."
+
+#: .\sj\users\views.py:50
+msgid "no_user"
+msgstr "Введен неправильный код."
+
+#: .\sj\users\views.py:52
+msgid "tries_lack"
+msgstr "Все попытки ввести код закончильись."
+
+#: .\sj\users\views.py:63
+msgid "logout_success"
+msgstr "Вы успешно вышли из аккаунта."

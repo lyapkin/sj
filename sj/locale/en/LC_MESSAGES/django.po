@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-01 18:02+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\sj\sj\settings.py:154
+msgid "Russian"
+msgstr "russian"
+
+#: .\sj\sj\settings.py:155
+msgid "English"
+msgstr "english"
+
+#: .\sj\users\models.py:12 .\sj\users\models.py:18 .\sj\users\models.py:27
+msgid "email"
+msgstr ""
+
+#: .\sj\users\models.py:19
+msgid "emails"
+msgstr ""
+
+#: .\sj\users\models.py:28
+msgid "username"
+msgstr ""
+
+#: .\sj\users\models.py:29
+msgid "date_joined"
+msgstr ""
+
+#: .\sj\users\models.py:30
+msgid "active"
+msgstr ""
+
+#: .\sj\users\models.py:31
+msgid "staff"
+msgstr ""
+
+#: .\sj\users\models.py:32
+msgid "superuser"
+msgstr ""
+
+#: .\sj\users\models.py:33
+msgid "last_login"
+msgstr ""
+
+#: .\sj\users\models.py:44
+msgid "user"
+msgstr ""
+
+#: .\sj\users\models.py:45
+msgid "users"
+msgstr ""
+
+#: .\sj\users\models.py:72
+msgid "profile_woman_sex"
+msgstr ""
+
+#: .\sj\users\models.py:73
+msgid "profile_man_sex"
+msgstr ""
+
+#: .\sj\users\views.py:39
+msgid "code_not_exist"
+msgstr ""
+
+#: .\sj\users\views.py:43
+msgid "code_expiration"
+msgstr ""
+
+#: .\sj\users\views.py:50
+msgid "no_user"
+msgstr ""
+
+#: .\sj\users\views.py:52
+msgid "tries_lack"
+msgstr "Tries end"
+
+#: .\sj\users\views.py:63
+msgid "logout_success"
+msgstr ""

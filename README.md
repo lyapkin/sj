@@ -5,7 +5,7 @@
 Оба закодированы base64. Идея в том, что если пользователь переходит по ссылке,
 декодировать параметры и отправить POST запросом на соответствующий поинт.
 ```
-/auth/code/ POST (получение кода, выводится в консоль Django)
+/[en || ru]/api/auth/code/ POST (получение кода, выводится в консоль Django)
 Request {
     "email": "asd@asd.asd"
 }
@@ -19,7 +19,7 @@ Response:
 }
 
 
-/auth/confirmation/ POST (аутентификация/регистрация)
+/[en || ru]/api/auth/confirmation/ POST (аутентификация/регистрация)
 Request {
     "email": "(отправленная почта)",
     "code": "1234"
@@ -37,7 +37,7 @@ Response:
 }
 
 
-/auth/check/ GET || POST auth-required
+/[en || ru]/api/auth/check/ GET || POST auth-required
 200 {
     "email": "(отправленная почта)",
     "id": 1 (Данные аутентифицированного пользователя)
@@ -47,7 +47,7 @@ Response:
 }
 
 
-/auth/logout/ GET auth-required
+/[en || ru]/api/auth/logout/ GET auth-required
 200 {
     "success": "Вы успешно вышли из аккаунта."
 }

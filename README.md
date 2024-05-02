@@ -6,9 +6,11 @@
 декодировать параметры и отправить POST запросом на соответствующий поинт.
 ```
 /[en || ru]/api/auth/code/ POST (получение кода, выводится в консоль Django)
-Request {
+Request:
+{
     "email": "asd@asd.asd"
 }
+
 Response:
 200 {
     "email": "(отправленная почта)"
@@ -20,10 +22,12 @@ Response:
 
 
 /[en || ru]/api/auth/confirmation/ POST (аутентификация/регистрация)
-Request {
+Request:
+{
     "email": "(отправленная почта)",
     "code": "1234"
 }
+
 Response:
 200 {
     "email": "(отправленная почта)",
@@ -38,6 +42,7 @@ Response:
 
 
 /[en || ru]/api/auth/check/ GET || POST auth-required
+Response:
 200 {
     "email": "(отправленная почта)",
     "id": 1 (Данные аутентифицированного пользователя)
@@ -48,6 +53,7 @@ Response:
 
 
 /[en || ru]/api/auth/logout/ GET auth-required
+Response:
 200 {
     "success": "Вы успешно вышли из аккаунта."
 }
@@ -57,7 +63,7 @@ Response:
 ```
 
 Любой POST, PUT, PATCH, DELETE запрос на поинт, где требуется аутентифицированный пользователь
-должен содержать X-CSRFToken заголовок
+должен содержать X-CSRFToken заголовок.
 Его значение храниться в куках, код для его получения:
 ```
 getCookie('csrftoken')

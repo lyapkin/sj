@@ -8,7 +8,7 @@ def get_categories():
     return categories
 
 
-def get_products(category, sub, sub2):
+def get_products(category, sub, sub2, query_params):
     products = Product.objects.translated()
     if sub2:
         category = Category.objects.translated().filter(translations__slug=category)

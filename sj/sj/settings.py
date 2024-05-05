@@ -74,8 +74,12 @@ INSTALLED_APPS = [
     'corsheaders',
     'parler',
     'rosetta',
+    'cities_light',
+
+    'common',
 
     'users',
+    'products'
 ]
 
 MIDDLEWARE = [
@@ -172,6 +176,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ['ru', 'en']
+CITIES_LIGHT_INCLUDE_COUNTRIES = None
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -205,17 +212,17 @@ MAX_OTP_TRY = 3
 SITE_DOMAIN = 'localhost:3000'
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_HOST = 'smtp.mail.ru'
-# EMAIL_PORT = 465
-# EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-# # EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = True
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
 
-# DEFAULT_FROM_EMAIL = f'{EMAIL_HOST_USER}'
-# SERVER_EMAIL = EMAIL_HOST_USER
-# EMAIL_ADMIN = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = f'{EMAIL_HOST_USER}'
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
 
 
 

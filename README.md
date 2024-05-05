@@ -84,3 +84,121 @@ function getCookie(name) {
     return cookieValue;
 }
 ```
+
+
+# Catalog
+
+Список категорий
+```
+/[en || ru]/api/products/categories/ GET
+[
+    {
+        "id": 4,
+        "name": "Первая",
+        "slug": "pervaia",
+        "children": [
+            {
+                "id": 9,
+                "name": "Вторая",
+                "slug": "vtoraia",
+                "children": [
+                    {
+                        "id": 11,
+                        "name": "Третья",
+                        "slug": "tretia",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": 10,
+                "name": "Вторая 2",
+                "slug": "vtoraia-2",
+                "children": [
+                    {
+                        "id": 16,
+                        "name": "Третья 3",
+                        "slug": "tretia-3",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "name": "первая англ",
+        "slug": "pervaia-angl",
+        "children": [
+            {
+                "id": 13,
+                "name": "Вторая 3",
+                "slug": "vtoraia-3",
+                "children": []
+            },
+            {
+                "id": 14,
+                "name": "Вторая 4 англ",
+                "slug": "vtoraia-4-angl",
+                "children": [
+                    {
+                        "id": 15,
+                        "name": "Третья 2 англ",
+                        "slug": "tretia-2-angl",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    }
+]
+```
+
+Список товаров
+type = null | {} (null если не переведен)
+is_prioritized = true | false (true если надо выделить большим размером в выдаче)
+actual_price (цена)
+current_price (цена со скидкой)
+? - необязательная часть пути
+```
+/[en || ru]/api/products/catalog/?[category]/?[subcategory]/?[subcategory-2] GET
+[
+    {
+        "id": 13,
+        "slug": "produkt-2",
+        "name": "Продукт 2",
+        "type": {
+            "id": 2,
+            "name": "Крем",
+            "slug": "krem"
+        },
+        "actual_price": 123,
+        "current_price": 123,
+        "img_urls": [
+            {
+                "id": 13,
+                "img_url": "/media/images/products/produkt-2/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60_ZUFD0fA.jpg"
+            }
+        ],
+        "is_present": false,
+        "is_prioritized": false
+    },
+    {
+        "id": 16,
+        "slug": "produkt-5",
+        "name": "Продукт 5",
+        "type": null,
+        "actual_price": 123,
+        "current_price": 123,
+        "img_urls": [
+            {
+                "id": 16,
+                "img_url": "/media/images/products/produkt-5/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60.jpg"
+            }
+        ],
+        "is_present": false,
+        "is_prioritized": false
+    }
+]
+```
+

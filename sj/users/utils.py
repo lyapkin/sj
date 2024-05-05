@@ -33,7 +33,7 @@ def send_otp(request, mail, otp):
     send_mail(
         subject,
         message,
-        'admin@admin.admin',
+        None,
         [mail]
     )
 

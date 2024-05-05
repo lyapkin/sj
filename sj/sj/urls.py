@@ -25,5 +25,6 @@ urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
     path('api/auth/', include('users.urls')),
-    prefix_default_language=False
+    path('api/products/', include('products.urls')),
+    # prefix_default_language=False
 )

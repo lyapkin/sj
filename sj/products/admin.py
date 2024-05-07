@@ -9,17 +9,47 @@ from parler.forms import TranslatableModelForm
 from itertools import chain
 from common.utils import generate_unique_slug, generate_unique_slug_translated
 
-from .models import Product, ProductImg, Category, SubCategory, SuperCategory, ProductType
+from .models import Product, ProductImg, Category, SubCategory, SuperCategory, ProductType, Brand, BrandCountry, Charachteristic, CharachteristicValue
 
 # Register your models here.
-class ImgInline(admin.TabularInline):
-    model = ProductImg
-    min_num = 1
+class CharachteristicAdmin(TranslatableAdmin):
+    list_display = ['name']
+    fields = ['name']
 
-    def get_formset(self, request, obj=None, **kwargs):
-        formset = super().get_formset(request, obj=None, **kwargs)
-        formset.validate_min = True
-        return formset
+    def get_queryset(self, request):
+        # Limit to a single language!
+        language_code = self.get_queryset_language(request)
+        return super(CharachteristicAdmin, self).get_queryset(request).translated(language_code).order_by('translations__name')
+    
+
+class CharachteristicValueAdmin(TranslatableAdmin):
+    list_display = ['__str__']
+    fields = ['charachteristic_key', 'value']
+
+    def get_queryset(self, request):
+        # Limit to a single language!
+        language_code = self.get_queryset_language(request)
+        return super(CharachteristicValueAdmin, self).get_queryset(request).translated(language_code).order_by('charachteristic_key')
+    
+
+class BrandCountryAdmin(TranslatableAdmin):
+    list_display = ['name']
+    fields = ('name', 'slug')
+
+    def get_queryset(self, request):
+        # Limit to a single language!
+        language_code = self.get_queryset_language(request)
+        return super(BrandCountryAdmin, self).get_queryset(request).translated(language_code).order_by('translations__name')
+    
+
+class BrandAdmin(TranslatableAdmin):
+    list_display = ['name']
+    fields = ('name', 'country', 'slug')
+
+    def get_queryset(self, request):
+        # Limit to a single language!
+        language_code = self.get_queryset_language(request)
+        return super(BrandAdmin, self).get_queryset(request).translated(language_code).order_by('translations__name')
     
 
 class ProductTypeAdmin(TranslatableAdmin):
@@ -30,6 +60,16 @@ class ProductTypeAdmin(TranslatableAdmin):
         # Limit to a single language!
         language_code = self.get_queryset_language(request)
         return super(ProductTypeAdmin, self).get_queryset(request).translated(language_code).order_by('translations__name')
+
+
+class ImgInline(admin.TabularInline):
+    model = ProductImg
+    min_num = 1
+
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj=None, **kwargs)
+        formset.validate_min = True
+        return formset
 
 
 class ProductForm(TranslatableModelForm):
@@ -48,9 +88,10 @@ class ProductForm(TranslatableModelForm):
 
 
 class ProductAdmin(TranslatableAdmin):
-    list_display = ["name", 'type', "code", 'actual_price', 'current_price']
+    list_display = ["name", 'type', 'brand', 'actual_price', 'current_price']
     inlines = [ImgInline]
     form = ProductForm
+    filter_horizontal = ("charachteristics",)
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(ProductAdmin, self).get_form(request, obj, **kwargs)
@@ -61,7 +102,7 @@ class ProductAdmin(TranslatableAdmin):
     def get_queryset(self, request):
         # Limit to a single language!
         language_code = self.get_queryset_language(request)
-        return super(ProductAdmin, self).get_queryset(request).translated(language_code)
+        return super(ProductAdmin, self).get_queryset(request).translated(language_code).order_by('translations__name')
     
 
 class CategoryAdmin(TranslatableAdmin):
@@ -90,6 +131,10 @@ class SubCategoryAdmin(TranslatableAdmin):
         return super(SubCategoryAdmin, self).get_queryset(request).translated(language_code).order_by('translations__name')
     
 
+admin.site.register(Charachteristic, CharachteristicAdmin)
+admin.site.register(CharachteristicValue, CharachteristicValueAdmin)
+admin.site.register(BrandCountry, BrandCountryAdmin)
+admin.site.register(Brand, BrandAdmin)
 admin.site.register(ProductType, ProductTypeAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(SubCategory, SubCategoryAdmin)

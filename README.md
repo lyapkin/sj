@@ -207,3 +207,199 @@ current_price (цена со скидкой)
 }
 ```
 
+Один продукт
+```
+/[en || ru]/api/products/item/[slug]/ GET
+{
+    "id": 12,
+    "slug": "produkt-1",
+    "type": "Маска",
+    "name": "Продукт 1",
+    "code": "123",
+    "brand": "Бренд 1",
+    "brand_country": "Россия",
+    "description": "123",
+    "is_present": false,
+    "actual_price": 123,
+    "current_price": 123,
+    "charachteristics": [
+        {
+            "id": 1,
+            "charachteristic_key": "Для кого",
+            "value": "Мужчин"
+        },
+        {
+            "id": 3,
+            "charachteristic_key": "Применение",
+            "value": "Лицо"
+        }
+    ],
+    "img_urls": [
+        {
+            "id": 12,
+            "img_url": "http://localhost:8000/media/images/products/produkt-1/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60_qXvjRZV.jpg"
+        }
+    ]
+}
+```
+
+Список фильтров
+```
+/[en || ru]/api/products/filters/ GET
+{
+    "filters": [
+        {
+            "title": "product_type",
+            "request_key": "product-type",
+            "id": -3,
+            "values": [
+                {
+                    "id": 1,
+                    "name": "Маска",
+                    "slug": "maska"
+                },
+                {
+                    "id": 2,
+                    "name": "Крем",
+                    "slug": "krem"
+                },
+                {
+                    "id": 3,
+                    "name": "Шампунь",
+                    "slug": "shampun"
+                }
+            ]
+        },
+        {
+            "title": "brand",
+            "request_key": "brand",
+            "id": -2,
+            "values": [
+                {
+                    "id": 1,
+                    "name": "Бренд 1",
+                    "slug": "brand-1"
+                },
+                {
+                    "id": 2,
+                    "name": "Бренд 2",
+                    "slug": "brand-2"
+                },
+                {
+                    "id": 3,
+                    "name": "Бренд 3",
+                    "slug": "brand-3"
+                },
+                {
+                    "id": 4,
+                    "name": "Бренд 4",
+                    "slug": "brand-4"
+                },
+                {
+                    "id": 5,
+                    "name": "Бренд 5",
+                    "slug": "brand-5"
+                }
+            ]
+        },
+        {
+            "title": "brand_country",
+            "request_key": "brand-country",
+            "id": -1,
+            "values": [
+                {
+                    "id": 1,
+                    "name": "Россия",
+                    "slug": "russia"
+                },
+                {
+                    "id": 2,
+                    "name": "Англия",
+                    "slug": "england"
+                },
+                {
+                    "id": 3,
+                    "name": "Белорусь",
+                    "slug": "belarus"
+                }
+            ]
+        },
+        {
+            "title": "Для кого",
+            "request_key": "dlia-kogo",
+            "id": 1,
+            "values": [
+                {
+                    "id": 1,
+                    "slug": "muzhchin",
+                    "name": "Мужчин"
+                },
+                {
+                    "id": 2,
+                    "slug": "zhknshchin",
+                    "name": "Женщин"
+                }
+            ]
+        },
+        {
+            "title": "Применение",
+            "request_key": "priminenie",
+            "id": 2,
+            "values": [
+                {
+                    "id": 3,
+                    "slug": "litso",
+                    "name": "Лицо"
+                },
+                {
+                    "id": 4,
+                    "slug": "ruki",
+                    "name": "Руки"
+                }
+            ]
+        }
+    ],
+    "other_filter_keys": [
+        "price-max",
+        "price-min",
+        "is_present",
+        "discount"
+    ],
+    "sort": [
+        {
+            "id": 1,
+            "slug": "relevance",
+            "value": "relevance"
+        },
+        {
+            "id": 2,
+            "slug": "popularity",
+            "value": "popularity"
+        },
+        {
+            "id": 3,
+            "slug": "price-up",
+            "value": "price_up"
+        },
+        {
+            "id": 1,
+            "slug": "price-down",
+            "value": "price_down"
+        }
+    ]
+}
+```
+
+Фильтрация
+sort=... - сортировка
+is_present=1 - в наличии
+is_present=0 - под заказ
+discount=1 - скидки
+price-min=... - нижний порог цены
+price-max=... - верхний порог цены
+Сортировка по популярности пока не работает
+Сортировка по релевантности - от вновь добавленных к добавленным давно
+```
+/[ru | en]/api/products/catalog/[category]?dlia-kogo=muzhchin&dlia-kogo=zhknshchin&sort=price-up&sort=price-up
+```
+

@@ -1,7 +1,7 @@
 /.venv/
 /venv/
 /sj/.env
-/sj/db.sqlite3
+# /sj/db.sqlite3
 .idea
 notes.txt
-/sj/media/
+# /sj/media/

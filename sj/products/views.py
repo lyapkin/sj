@@ -3,16 +3,19 @@ from rest_framework import views, mixins, viewsets
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
-from .services import get_categories, get_products, get_brands, get_brand_countries, get_types, get_charachteristics, serialize_filters
-from .serializers import ProductListSerializer, CategorySerializer, ProductItemSerializer
+from .services import *
+from .serializers import ProductListSerializer, CategorySerializer, ProductItemSerializer, SubCategoryFeedSerializer, BrandSerializer
 from .models import Product
 
 
 class CategoriesApi(views.APIView):
 
-    def get(self, request):
-        categories = get_categories()
-        category_serializer = CategorySerializer(categories, many=True)
+    def get(self, request, category=None):
+        categories = get_categories(category)
+        if category:
+            category_serializer = SubCategoryFeedSerializer(categories, many=True)
+        else:
+            category_serializer = CategorySerializer(categories, many=True)
         return Response(category_serializer.data, status=200)
     
 
@@ -25,8 +28,8 @@ class CatalogApiPagination(PageNumberPagination):
 class CatalogApi(views.APIView):
     pagination_class = CatalogApiPagination
      
-    def get(self, request, category=None, sub=None, sub2=None, format=None):
-        products = get_products(category, sub, sub2, request.query_params)
+    def get(self, request, category=None, sub=None, sub2=None, brandname=None, format=None):
+        products = get_products(category, sub, sub2, brandname, request.query_params)
         paginator = self.pagination_class()
         result_products = paginator.paginate_queryset(products, request, view=self)
         product_serializer = ProductListSerializer(result_products, many=True)
@@ -49,3 +52,23 @@ class FiltersApi(views.APIView):
         countries = get_brand_countries()
         filters = serialize_filters(types, brands, countries, charachteristics)
         return Response(filters, status=200)
+
+
+class BrandApi(views.APIView):
+
+    def get(self, request, format=None):
+        brands = get_brands()
+        brands_serializer = BrandSerializer(brands, many=True)
+        response_representation = alphabet_brands(brands_serializer.data)
+        return Response(response_representation, status=200)
+    
+
+class SearchApi(views.APIView):
+
+    def get(self, request, format=None):
+        products = search_products(request.query_params.get('q'))
+        products_code = serach_products_by_code(request.query_params.get('q'))
+        brands = search_brands(request.query_params.get('q'))
+        categories = serach_categories(request.query_params.get('q'))
+        search = serialize_search(products, products_code, brands, categories)
+        return Response(search, status=200)

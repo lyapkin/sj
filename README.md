@@ -154,6 +154,23 @@ function getCookie(name) {
 ]
 ```
 
+Список подкатегорий выбранной категории
+```
+/[en || ru]/api/products/categories/[category] GET
+[
+    {
+        "id": 13,
+        "name": "Вторая 3",
+        "slug": "vtoraia-3"
+    },
+    {
+        "id": 14,
+        "name": "Вторая 4 англ",
+        "slug": "vtoraia-4-angl"
+    }
+]
+```
+
 Список товаров
 type = null | {} (null если не переведен)
 is_prioritized = true | false (true если надо выделить большим размером в выдаче)
@@ -403,3 +420,115 @@ price-max=... - верхний порог цены
 /[ru | en]/api/products/catalog/[category]?dlia-kogo=muzhchin&dlia-kogo=zhknshchin&sort=price-up&sort=price-up
 ```
 
+# Бренды
+
+Список брендов
+```
+/[ru | en]/api/products/brands/
+{
+    "A": [
+        {
+            "id": 6,
+            "name": "Alfa-brand",
+            "slug": "alfa-brand"
+        }
+    ],
+    "B": [
+        {
+            "id": 1,
+            "name": "Brand 1",
+            "slug": "brand-1"
+        },
+        {
+            "id": 4,
+            "name": "Brand 4",
+            "slug": "brand-4"
+        },
+        {
+            "id": 5,
+            "name": "Brand 5",
+            "slug": "brand-5"
+        }
+    ]
+}
+```
+
+Список товаров
+type = null | {} (null если не переведен)
+is_prioritized = true | false (true если надо выделить большим размером в выдаче)
+actual_price (цена)
+current_price (цена со скидкой)
+? - необязательная часть пути
+```
+/[en || ru]/api/products/brands/[brand-slug] GET
+{
+    "count": 3,
+    "next": "http://localhost:8000/ru/api/products/catalog/pervaia-angl/?page=2",
+    "previous": null,
+    "results": [
+        {
+            "id": 13,
+            "slug": "produkt-2",
+            "name": "Продукт 2",
+            "type": {
+                "id": 2,
+                "name": "Крем",
+                "slug": "krem"
+            },
+            "actual_price": 123,
+            "current_price": 123,
+            "img_urls": [
+                {
+                    "id": 13,
+                    "img_url": "/media/images/products/produkt-2/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60_ZUFD0fA.jpg"
+                }
+            ],
+            "is_present": false,
+            "is_prioritized": false
+        },
+        {
+            "id": 14,
+            "slug": "produkt-3",
+            "name": "Продукт 3",
+            "type": null,
+            "actual_price": 123,
+            "current_price": 123,
+            "img_urls": [
+                {
+                    "id": 14,
+                    "img_url": "/media/images/products/produkt-3/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60_4h5bxW5.jpg"
+                }
+            ],
+            "is_present": false,
+            "is_prioritized": false
+        }
+    ]
+}
+```
+
+
+# Поиск
+```
+/[ru | en]/api/products/search?q=еть
+{
+    "products": [],
+    "categories": [
+        {
+            "id": 11,
+            "name": "Первая / Вторая / Третья",
+            "slug": "tretia"
+        },
+        {
+            "id": 15,
+            "name": "первая англ / Вторая 4 англ / Третья 2 англ",
+            "slug": "tretia-2-angl"
+        },
+        {
+            "id": 16,
+            "name": "Первая / Вторая 2 / Третья 3",
+            "slug": "tretia-3"
+        }
+    ],
+    "brands": []
+}
+```

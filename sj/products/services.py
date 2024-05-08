@@ -1,14 +1,19 @@
+from itertools import chain
 from django.db.models import Q
 from django.utils.translation import get_language, gettext_lazy as _
 from django.db.models import F
 
 from .models import Product, Category, SuperCategory, SubCategory, Brand, Charachteristic, BrandCountry, ProductType
-from .serializers import BrandFilterSerializer, TypeFilterSerializer, CharachteristicsFilterSerializer, BrandCountryFilterSerializer
+from .serializers import *
 from .constants import *
 
 
-def get_categories():
-    categories = Category.objects.translated()
+def get_categories(category):
+    if category:
+        categories = SuperCategory.objects.translated().filter(translations__slug=category)
+        categories = categories.first().children.translated() if categories.exists() else []
+    else:
+        categories = Category.objects.translated()
     return categories
 
 
@@ -68,7 +73,7 @@ def filter_products(products, query_params):
     
 
 
-def get_products(category, sub, sub2, query_params):
+def get_products(category, sub, sub2, brandname, query_params):
     query_params = query_params.copy()
     # sort = query_params.pop('sort', None)
     
@@ -76,7 +81,9 @@ def get_products(category, sub, sub2, query_params):
 
     products = sort_products(products, query_params)
 
-    if sub2:
+    if brandname:
+        products = products.filter(brand__slug=brandname)
+    elif sub2:
         category = Category.objects.translated().filter(translations__slug=category)
         subcategories = SubCategory.objects.translated().filter(translations__slug=sub, parent__in=category)
         end_subcategories = SubCategory.objects.translated().filter(translations__slug=sub2, parent__in=subcategories)
@@ -139,3 +146,44 @@ def serialize_filters(types, brands, countries, charachterisctics):
                 {'id': 3, 'slug': PRICE_UP_SORT, 'value': _('price_up')},
                 {'id': 1, 'slug': PRICE_DOWN_SORT, 'value': _('price_down')}
             ]}
+
+
+def alphabet_brands(data):
+    res = {}
+    for brand in data:
+        first_letter = brand['name'][:1].upper()
+        if first_letter in res:
+            res[first_letter].append(brand)
+        else:
+            res[first_letter] = [brand]
+
+    return dict(sorted(res.items()))
+
+
+def search_products(line):
+    products = Product.objects.translated().filter(translations__name__icontains=line, translations__language_code=get_language())
+    return products
+
+
+def serach_products_by_code(line):
+    products = Product.objects.translated().filter(code__icontains=line)
+    return products
+
+
+def search_brands(line):
+    brands = Brand.objects.translated().filter(translations__name__icontains=line, translations__language_code=get_language())
+    return brands
+
+
+def serach_categories(line):
+    categories = SuperCategory.objects.translated().filter(translations__name__icontains=line, translations__language_code=get_language())
+    return categories
+
+
+def serialize_search(products, code_products, brands, categories):
+    return {
+        'products': SearchProductSerializer(list(chain(products, code_products)), many=True).data,
+        'categories': SerachCategorySerializer(categories, many=True).data,
+        'brands': BrandSerializer(brands, many=True).data
+    }
+

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-01 18:02+0500\n"
+"POT-Creation-Date: 2024-05-08 18:42+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,78 +18,214 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\sj\sj\settings.py:154
+#: .\products\models.py:11 .\products\models.py:33
+msgid "char_name"
+msgstr ""
+
+#: .\products\models.py:19
+msgid "product_char"
+msgstr ""
+
+#: .\products\models.py:20
+msgid "product_chars"
+msgstr ""
+
+#: .\products\models.py:30
+msgid "char_value_name"
+msgstr ""
+
+#: .\products\models.py:39
+msgid "product_char_value"
+msgstr ""
+
+#: .\products\models.py:40
+msgid "product_char_values"
+msgstr ""
+
+#: .\products\models.py:50
+msgid "category_name"
+msgstr ""
+
+#: .\products\models.py:55 .\products\models.py:165
+msgid "order"
+msgstr ""
+
+#: .\products\models.py:73
+msgid "category"
+msgstr ""
+
+#: .\products\models.py:74
+msgid "categories"
+msgstr ""
+
+#: .\products\models.py:84
+msgid "parent_category"
+msgstr ""
+
+#: .\products\models.py:90
+msgid "subcategory"
+msgstr ""
+
+#: .\products\models.py:91
+msgid "subcategories"
+msgstr ""
+
+#: .\products\models.py:104 .\products\models.py:125
+msgid "country"
+msgstr ""
+
+#: .\products\models.py:112 .\products\services.py:132
+msgid "brand_country"
+msgstr ""
+
+#: .\products\models.py:113
+msgid "brand_countries"
+msgstr ""
+
+#: .\products\models.py:122 .\products\models.py:131 .\products\services.py:131
+msgid "brand"
+msgstr ""
+
+#: .\products\models.py:132
+msgid "brands"
+msgstr ""
+
+#: .\products\models.py:141 .\products\models.py:170 .\products\services.py:130
+msgid "product_type"
+msgstr ""
+
+#: .\products\models.py:157
+msgid "product_name"
+msgstr ""
+
+#: .\products\models.py:159
+msgid "description"
+msgstr ""
+
+#: .\products\models.py:161
+msgid "presence"
+msgstr ""
+
+#: .\products\models.py:162
+msgid "is_prioritized"
+msgstr ""
+
+#: .\products\models.py:163
+msgid "actual_price"
+msgstr ""
+
+#: .\products\models.py:164
+msgid "current_price"
+msgstr ""
+
+#: .\products\models.py:166
+msgid "part_number"
+msgstr ""
+
+#: .\products\models.py:171
+msgid "product_brand"
+msgstr ""
+
+#: .\products\models.py:190 .\products\models.py:197
+msgid "product_img"
+msgstr ""
+
+#: .\products\models.py:191
+msgid "product"
+msgstr ""
+
+#: .\products\models.py:198
+msgid "product_imgs"
+msgstr ""
+
+#: .\products\services.py:137
+msgid "relevance"
+msgstr ""
+
+#: .\products\services.py:138
+msgid "popularity"
+msgstr ""
+
+#: .\products\services.py:139
+msgid "price_up"
+msgstr ""
+
+#: .\products\services.py:140
+msgid "price_down"
+msgstr ""
+
+#: .\sj\settings.py:158
 msgid "Russian"
 msgstr "russian"
 
-#: .\sj\sj\settings.py:155
+#: .\sj\settings.py:159
 msgid "English"
 msgstr "english"
 
-#: .\sj\users\models.py:12 .\sj\users\models.py:18 .\sj\users\models.py:27
+#: .\users\models.py:12 .\users\models.py:18 .\users\models.py:27
 msgid "email"
 msgstr ""
 
-#: .\sj\users\models.py:19
+#: .\users\models.py:19
 msgid "emails"
 msgstr ""
 
-#: .\sj\users\models.py:28
+#: .\users\models.py:28
 msgid "username"
 msgstr ""
 
-#: .\sj\users\models.py:29
+#: .\users\models.py:29
 msgid "date_joined"
 msgstr ""
 
-#: .\sj\users\models.py:30
+#: .\users\models.py:30
 msgid "active"
 msgstr ""
 
-#: .\sj\users\models.py:31
+#: .\users\models.py:31
 msgid "staff"
 msgstr ""
 
-#: .\sj\users\models.py:32
+#: .\users\models.py:32
 msgid "superuser"
 msgstr ""
 
-#: .\sj\users\models.py:33
+#: .\users\models.py:33
 msgid "last_login"
 msgstr ""
 
-#: .\sj\users\models.py:44
+#: .\users\models.py:44
 msgid "user"
 msgstr ""
 
-#: .\sj\users\models.py:45
+#: .\users\models.py:45
 msgid "users"
 msgstr ""
 
-#: .\sj\users\models.py:72
+#: .\users\models.py:72
 msgid "profile_woman_sex"
 msgstr ""
 
-#: .\sj\users\models.py:73
+#: .\users\models.py:73
 msgid "profile_man_sex"
 msgstr ""
 
-#: .\sj\users\views.py:39
+#: .\users\views.py:39
 msgid "code_not_exist"
 msgstr ""
 
-#: .\sj\users\views.py:43
+#: .\users\views.py:43
 msgid "code_expiration"
 msgstr ""
 
-#: .\sj\users\views.py:50
+#: .\users\views.py:50
 msgid "no_user"
 msgstr ""
 
-#: .\sj\users\views.py:52
+#: .\users\views.py:52
 msgid "tries_lack"
 msgstr "Tries end"
 
-#: .\sj\users\views.py:63
+#: .\users\views.py:63
 msgid "logout_success"
 msgstr ""

@@ -187,6 +187,13 @@ class ProductItemSerializer(serializers.ModelSerializer):
         rep = super().to_representation(instance)
         rep['charachteristics'] = list(filter(lambda c: c is not None, rep['charachteristics']))
         return rep
+    
+
+class SubCategoryFeedSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = SubCategory
+        fields = ('id', 'name', 'slug')
 
 
 class SubCategorySerializer(TranslatableModelSerializer):
@@ -295,3 +302,43 @@ class CharachteristicsFilterSerializer(serializers.ModelSerializer):
             'id': rep['id'],
             'values': list(filter(lambda v: v is not None, rep['values']))
         }
+    
+
+class BrandSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Brand
+        fields = (
+            'id',
+            'name',
+            'slug'
+        )
+
+
+class SearchProductSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = (
+            'id',
+            'name',
+            'slug',
+        )
+
+
+class SerachCategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SuperCategory
+        fields = (
+            'id',
+            'name',
+            'slug',
+        )
+    
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep['name'] = str(instance)
+        return rep
+
+    

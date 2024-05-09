@@ -157,18 +157,23 @@ function getCookie(name) {
 Список подкатегорий выбранной категории
 ```
 /[en || ru]/api/products/categories/[category] GET
-[
-    {
-        "id": 13,
-        "name": "Вторая 3",
-        "slug": "vtoraia-3"
-    },
-    {
-        "id": 14,
-        "name": "Вторая 4 англ",
-        "slug": "vtoraia-4-angl"
-    }
-]
+{
+    "id": 4,
+    "name": "Первая",
+    "slug": "pervaia",
+    "children": [
+        {
+            "id": 9,
+            "name": "Вторая",
+            "slug": "vtoraia"
+        },
+        {
+            "id": 10,
+            "name": "Вторая 2",
+            "slug": "vtoraia-2"
+        }
+    ]
+}
 ```
 
 Список товаров

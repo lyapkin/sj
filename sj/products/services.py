@@ -11,7 +11,8 @@ from .constants import *
 def get_categories(category):
     if category:
         categories = SuperCategory.objects.translated().filter(translations__slug=category)
-        categories = categories.first().children.translated() if categories.exists() else []
+        categories = categories.first()
+        # .children.translated() if categories.exists() else []
     else:
         categories = Category.objects.translated()
     return categories

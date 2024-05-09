@@ -13,7 +13,7 @@ class CategoriesApi(views.APIView):
     def get(self, request, category=None):
         categories = get_categories(category)
         if category:
-            category_serializer = SubCategoryFeedSerializer(categories, many=True)
+            category_serializer = ParentCategoryFeedSerializer(categories)
         else:
             category_serializer = CategorySerializer(categories, many=True)
         return Response(category_serializer.data, status=200)

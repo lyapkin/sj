@@ -189,11 +189,38 @@ class ProductItemSerializer(serializers.ModelSerializer):
         return rep
     
 
-class SubCategoryFeedSerializer(serializers.ModelSerializer):
+class SubCategoryFeedSerializer(TranslatableModelSerializer):
+    translations = TranslatedFieldsField(shared_model=SubCategory)
     
     class Meta:
         model = SubCategory
-        fields = ('id', 'name', 'slug')
+        fields = ('id', 'translations')
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        translations = rep['translations'].get(get_language(), None)
+        if translations:
+            rep['name'] = translations['name']
+            rep['slug'] = translations['slug']
+            del rep['translations']
+        else:
+            return None
+        # del rep['children']
+
+        return rep
+
+
+class ParentCategoryFeedSerializer(serializers.ModelSerializer):
+    children = SubCategoryFeedSerializer(many=True)
+
+    class Meta:
+        model = SuperCategory
+        fields = ('id', 'name', 'slug', 'children')
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep['children'] = list(filter(lambda c: c is not None, rep['children']))
+        return rep
 
 
 class SubCategorySerializer(TranslatableModelSerializer):

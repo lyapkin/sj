@@ -5,6 +5,7 @@ from parler_rest.serializers import TranslatableModelSerializer
 from parler_rest.fields import TranslatedFieldsField
 
 from .models import *
+from users.models import FavoriteProduct, FavoriteBrand
 
 
 class ProductTypeSerializer(TranslatableModelSerializer):
@@ -367,5 +368,34 @@ class SerachCategorySerializer(serializers.ModelSerializer):
         rep = super().to_representation(instance)
         rep['name'] = str(instance)
         return rep
+    
+
+class SuperCategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SuperCategory
+        fields = (
+            'id',
+            'name',
+            'slug',
+        )
 
     
+class FavoriteProductSerilizer(serializers.ModelSerializer):
+
+    class Meta:
+        model = FavoriteProduct
+        fields = (
+            'product',
+            'user'
+        )
+
+
+class FavoriteBrandSerilizer(serializers.ModelSerializer):
+
+    class Meta:
+        model = FavoriteBrand
+        fields = (
+            'brand',
+            'user'
+        )

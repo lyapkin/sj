@@ -196,23 +196,3 @@ class ProductImg(models.Model):
     class Meta:
         verbose_name = _("product_img")
         verbose_name_plural = _("product_imgs")
-
-
-
-    
-
-# class CharValue(TranslatableModel):
-#     translations = TranslatedFields(
-#         key = models.CharField('характеристика', max_length=50),
-#         value = models.CharField("значение характеристики", max_length=50),
-#     )
-#     product = models.ForeignKey(Product, models.CASCADE, related_name='charachteristics', verbose_name='товар')
-
-#     def __str__(self):
-#         return self.product.name + ' ' + self.key + ' ' + self.value
-    
-#     class Meta:
-#         verbose_name = "характеристика товара"
-#         verbose_name_plural = "характеристики товаров"
-
-

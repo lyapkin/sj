@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 
 from .managers import UserManager
+from products.models import Product, Brand
 
 
 # Create your models here.
@@ -81,5 +82,25 @@ class Profile(models.Model):
     # city = models.CharField(_('profile_city'), max_length=100, null=True, blank='True')
     # phone_number = models.CharField(_('profile_phone_number'))
 
+    favorite_products = models.ManyToManyField(Product, through='FavoriteProduct')
+    favorite_brands = models.ManyToManyField(Brand, through='FavoriteBrand')
+
     def __str__(self):
         return self.email.email
+
+
+class FavoriteProduct(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['product', 'user']
+
+
+class FavoriteBrand(models.Model):
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile,on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ['brand', 'user']

@@ -156,7 +156,7 @@ function getCookie(name) {
 
 Список подкатегорий выбранной категории
 ```
-/[en || ru]/api/products/categories/[category] GET
+/[en || ru]/api/products/categories/[category]/ GET
 {
     "id": 4,
     "name": "Первая",
@@ -225,7 +225,12 @@ current_price (цена со скидкой)
             "is_present": false,
             "is_prioritized": false
         }
-    ]
+    ],
+    "section": {
+        "id": 12,
+        "name": "первая англ",
+        "slug": "pervaia-angl"
+    }
 }
 ```
 
@@ -465,49 +470,62 @@ actual_price (цена)
 current_price (цена со скидкой)
 ? - необязательная часть пути
 ```
-/[en || ru]/api/products/brands/[brand-slug] GET
+/[en || ru]/api/products/brands/[brand-slug]/ GET
 {
-    "count": 3,
-    "next": "http://localhost:8000/ru/api/products/catalog/pervaia-angl/?page=2",
+    "count": 2,
+    "next": null,
     "previous": null,
     "results": [
         {
-            "id": 13,
-            "slug": "produkt-2",
-            "name": "Продукт 2",
+            "id": 16,
+            "slug": "produkt-5",
+            "name": "Продукт 5",
             "type": {
-                "id": 2,
-                "name": "Крем",
-                "slug": "krem"
+                "id": 3,
+                "name": "Шампунь",
+                "slug": "shampun"
             },
             "actual_price": 123,
             "current_price": 123,
             "img_urls": [
                 {
-                    "id": 13,
-                    "img_url": "/media/images/products/produkt-2/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60_ZUFD0fA.jpg"
+                    "id": 16,
+                    "img_url": "/media/images/products/produkt-5/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60.jpg"
                 }
             ],
             "is_present": false,
             "is_prioritized": false
         },
         {
-            "id": 14,
-            "slug": "produkt-3",
-            "name": "Продукт 3",
-            "type": null,
+            "id": 12,
+            "slug": "produkt-1",
+            "name": "Продукт 1",
+            "type": {
+                "id": 1,
+                "name": "Маска",
+                "slug": "maska"
+            },
             "actual_price": 123,
             "current_price": 123,
             "img_urls": [
                 {
-                    "id": 14,
-                    "img_url": "/media/images/products/produkt-3/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60_4h5bxW5.jpg"
+                    "id": 12,
+                    "img_url": "/media/images/products/produkt-1/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60_qXvjRZV.jpg"
+                },
+                {
+                    "id": 17,
+                    "img_url": "/media/images/products/produkt-1/1.png"
                 }
             ],
             "is_present": false,
             "is_prioritized": false
         }
-    ]
+    ],
+    "section": {
+        "id": 1,
+        "name": "Бренд 1",
+        "slug": "brand-1"
+    }
 }
 ```
 
@@ -536,4 +554,95 @@ current_price (цена со скидкой)
     ],
     "brands": []
 }
+```
+
+
+# Избранное
+
+Добавление продукта в избранное
+```
+/[ru | en]/api/products/favorite-products/ POST auth-required csrf-token
+
+Request:
+{
+    "id": 16 (id товара)
+}
+
+Response:
+201 {
+    "product": 16,
+    "user": 1
+}
+```
+
+Список продуктов
+```
+/[ru | en]/api/products/favorite-products/ GET auth-required
+{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 16,
+            "slug": "produkt-5",
+            "name": "Продукт 5",
+            "type": {
+                "id": 3,
+                "name": "Шампунь",
+                "slug": "shampun"
+            },
+            "actual_price": 123,
+            "current_price": 123,
+            "img_urls": [
+                {
+                    "id": 16,
+                    "img_url": "/media/images/products/produkt-5/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60.jpg"
+                }
+            ],
+            "is_present": false,
+            "is_prioritized": false
+        }
+    ]
+}
+```
+
+Удаление продукта
+```
+/[ru | en]/api/products/favorite-products/16/ DELETE
+Response 204
+```
+
+Добавление бренда в избранное
+```
+/[ru | en]/api/products/favorite-brands/ POST auth-required csrf-token
+
+Request:
+{
+    "id": 1 (id бренд)
+}
+
+Response:
+201 {
+    "product": 1,
+    "user": 1
+}
+```
+
+Список продуктов
+```
+/[ru | en]/api/products/favorite-brands/ GET auth-required
+[
+    {
+        "id": 1,
+        "name": "Бренд 1",
+        "slug": "brand-1"
+    }
+]
+```
+
+Удаление продукта
+```
+/[ru | en]/api/products/favorite-brands/1/ DELETE
+Response 204
 ```

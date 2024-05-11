@@ -81,6 +81,7 @@ def get_products(category, sub, sub2, brandname, query_params):
     products = Product.objects.translated().all()
 
     products = sort_products(products, query_params)
+    section = None
 
     if brandname:
         products = products.filter(brand__slug=brandname)
@@ -107,6 +108,28 @@ def get_products(category, sub, sub2, brandname, query_params):
     products = filter_products(products, query_params)
     
     return products
+
+
+def get_section(category=None, sub=None, sub2=None, brandname=None):
+    section = None
+    if brandname:
+        brand = Brand.objects.translated().filter(slug=brandname)
+        if brand.exists():
+            section = BrandSerializer(brand.first()).data
+    elif sub2:
+        sub_obj = SuperCategory.objects.translated().filter(translations__slug=sub2)
+        if sub_obj.exists():
+            section = SuperCategorySerializer(sub_obj.first()).data
+    elif sub:
+        sub_obj = SuperCategory.objects.translated().filter(translations__slug=sub)
+        if sub_obj.exists():
+            section = SuperCategorySerializer(sub_obj.first()).data
+    elif category:
+        sub_obj = SuperCategory.objects.translated().filter(translations__slug=category)
+        if sub_obj.exists():
+            section = SuperCategorySerializer(sub_obj.first()).data
+    return section
+
 
 
 def get_brands():
@@ -162,12 +185,7 @@ def alphabet_brands(data):
 
 
 def search_products(line):
-    products = Product.objects.translated().filter(translations__name__icontains=line, translations__language_code=get_language())
-    return products
-
-
-def serach_products_by_code(line):
-    products = Product.objects.translated().filter(code__icontains=line)
+    products = Product.objects.translated().filter(Q(translations__name__icontains=line) | Q(code__icontains=line), translations__language_code=get_language())
     return products
 
 
@@ -181,9 +199,9 @@ def serach_categories(line):
     return categories
 
 
-def serialize_search(products, code_products, brands, categories):
+def serialize_search(products, brands, categories):
     return {
-        'products': SearchProductSerializer(list(chain(products, code_products)), many=True).data,
+        'products': SearchProductSerializer(products, many=True).data,
         'categories': SerachCategorySerializer(categories, many=True).data,
         'brands': BrandSerializer(brands, many=True).data
     }

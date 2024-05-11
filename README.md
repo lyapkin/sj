@@ -646,3 +646,43 @@ Response:
 /[ru | en]/api/products/favorite-brands/1/ DELETE
 Response 204
 ```
+
+
+# Документация 
+```
+/[ru | en]/api/docs/ GET
+[
+    {
+        "id": 1,
+        "name": "Документ 1",
+        "sections": [
+            {
+                "id": 1,
+                "title": "Раздел 1",
+                "content": "<p>Текст 1</p>"
+            },
+            {
+                "id": 2,
+                "title": "Раздел 2",
+                "content": "<p>Текст 2</p>"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Документ 2",
+        "sections": [
+            {
+                "id": 3,
+                "title": "Раздел 1",
+                "content": "<p>Текст 1</p>"
+            },
+            {
+                "id": 4,
+                "title": "Раздел 2",
+                "content": "<p>Текст 2</p>"
+            }
+        ]
+    }
+]
+```

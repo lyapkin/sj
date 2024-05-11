@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path("ckeditor5/", include('django_ckeditor_5.urls'), name="ck_editor_5_upload_file"),
 ]
 
 urlpatterns += i18n_patterns(
@@ -28,6 +29,7 @@ urlpatterns += i18n_patterns(
     path('rosetta/', include('rosetta.urls')),
     path('api/auth/', include('users.urls')),
     path('api/products/', include('products.urls')),
+    path('api/docs/', include('docs.urls')),
     # prefix_default_language=False
 )
 

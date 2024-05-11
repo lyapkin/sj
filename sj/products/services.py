@@ -77,6 +77,7 @@ def filter_products(products, query_params):
 def get_products(category, sub, sub2, brandname, query_params):
     query_params = query_params.copy()
     # sort = query_params.pop('sort', None)
+    query_params.pop('page', None)
     
     products = Product.objects.translated().all()
 

@@ -30,6 +30,7 @@ urlpatterns += i18n_patterns(
     path('api/auth/', include('users.urls')),
     path('api/products/', include('products.urls')),
     path('api/docs/', include('docs.urls')),
+    path('api/faq/', include('faq.urls')),
     # prefix_default_language=False
 )
 

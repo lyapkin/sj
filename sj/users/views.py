@@ -55,7 +55,7 @@ def confirm(request, *args, **kwargs):
 
     login(request, user)
     otp.delete()
-    return Response({'user': UserSerializer(request.user).data, 'cart': CartSerializer(Cart.objects.filter(user=request.user), many=True).data}, status=200)
+    return Response({**UserSerializer(request.user).data, 'cart': CartSerializer(Cart.objects.filter(user=request.user), many=True).data}, status=200)
 
 
 @api_view(['GET'])
@@ -69,4 +69,4 @@ def logout_view(request, *args, **kwargs):
 @permission_classes([IsAuthenticated])
 def check_auth(request, *args, **kwargs):
     # print(Cart.objects.filter(request.user))
-    return Response({'user': UserSerializer(request.user).data, 'cart': CartSerializer(Cart.objects.filter(user=request.user), many=True).data}, status=200)
+    return Response({**UserSerializer(request.user).data, 'cart': CartSerializer(Cart.objects.filter(user=request.user), many=True).data}, status=200)

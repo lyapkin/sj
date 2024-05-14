@@ -3,7 +3,7 @@ import random
 from django.conf import settings
 from rest_framework import serializers
 
-from .models import User, Email, Otp
+from .models import User, Email, Otp, FavoriteProduct
 from .utils import create_otp, send_otp
 
 
@@ -36,3 +36,15 @@ class OtpSerializer(serializers.ModelSerializer):
 
         return instance
 
+
+class FavoriteProductSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = FavoriteProduct
+        fields = (
+            'product',
+        )
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        return rep['product']

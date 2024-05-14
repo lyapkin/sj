@@ -30,8 +30,21 @@ Request:
 
 Response:
 200 {
-    "email": "(отправленная почта)",
-    "id": 1 (Данные аутентифицированного пользователя)
+    "user": {
+        "email": "bronabro@mail.ru""(отправленная почта)",
+        "id": 1 (Данные аутентифицированного пользователя)
+    },
+    "cart": [
+        {
+            "id": 15,
+            "type": "Маска",
+            "name": "Продукт 4",
+            "actual_price": 123,
+            "current_price": 123,
+            "img_url": "/media/images/products/produkt-4/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60.jpg",
+            "quantity": 1
+        }
+    ]
 }
 401 {
     "error": "...",
@@ -44,8 +57,21 @@ Response:
 /[en || ru]/api/auth/check/ GET || POST auth-required
 Response:
 200 {
-    "email": "(отправленная почта)",
-    "id": 1 (Данные аутентифицированного пользователя)
+    "user": {
+        "email": "bronabro@mail.ru""(отправленная почта)",
+        "id": 1 (Данные аутентифицированного пользователя)
+    },
+    "cart": [
+        {
+            "id": 15,
+            "type": "Маска",
+            "name": "Продукт 4",
+            "actual_price": 123,
+            "current_price": 123,
+            "img_url": "/media/images/products/produkt-4/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60.jpg",
+            "quantity": 1
+        }
+    ]
 }
 403 {
     "detail": "Учетные данные не были предоставлены."
@@ -725,4 +751,57 @@ Response 204
         ]
     }
 ]
+```
+
+
+# Корзина
+
+Тело ответа для всех запросов - корзина для данного пользователя (массив с данными, либо пустой)
+```
+[
+    {
+        "id": 16,
+        "type": "Shampoo",
+        "name": "Продукт 5",
+        "actual_price": 123,
+        "current_price": 123,
+        "img_url": "/media/images/products/produkt-5/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60.jpg",
+        "quantity": 1
+    },
+    {
+        "id": 15,
+        "type": "Mask",
+        "name": "Продукт 4",
+        "actual_price": 123,
+        "current_price": 123,
+        "img_url": "/media/images/products/produkt-4/1%D0%93%D0%B0%D0%B9%D0%BA%D0%B0_%D0%B4%D0%BB%D1%8F_%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D0%B8_%D1%81_%D1%80%D1%83%D1%87%D0%BA%D0%BE%D0%B9_%D0%BE%D1%86%D0%B8%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_D60.jpg",
+        "quantity": 1
+    }
+]
+```
+
+Добавление товара в корзину/Обновление количества товара в корзине
+```
+/[ru | en]/api/cart/ POST auth-required csrf-token
+Request:
+{
+    "id": 16, (id продукта)
+    "quantity": 1 (количество)
+}
+
+Response status: 200 | 201
+```
+
+Удаление единицы товара из корзины
+```
+/[ru | en]/api/cart/[product_id]/ DELETE auth-required csrf-token
+
+Response status: 204
+```
+
+Очистка корзины
+```
+/[ru | en]/api/cart/clean/ DELETE auth-required csrf-token
+
+Response status: 204
 ```

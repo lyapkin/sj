@@ -11,6 +11,8 @@ from .models import Otp
 from .serializers import OtpSerializer, UserSerializer
 from .utils import create_otp, send_otp, clean_otp_db
 from django.contrib.auth import authenticate, login, logout
+from cart.serializers import CartSerializer
+from cart.models import Cart
 
 
 @api_view(['POST'])
@@ -53,7 +55,7 @@ def confirm(request, *args, **kwargs):
 
     login(request, user)
     otp.delete()
-    return Response(UserSerializer(user).data, status=200)
+    return Response({'user': UserSerializer(request.user).data, 'cart': CartSerializer(Cart.objects.filter(user=request.user), many=True).data}, status=200)
 
 
 @api_view(['GET'])
@@ -66,4 +68,5 @@ def logout_view(request, *args, **kwargs):
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def check_auth(request, *args, **kwargs):
-    return Response(UserSerializer(request.user).data, status=200)
+    # print(Cart.objects.filter(request.user))
+    return Response({'user': UserSerializer(request.user).data, 'cart': CartSerializer(Cart.objects.filter(user=request.user), many=True).data}, status=200)

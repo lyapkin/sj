@@ -85,8 +85,8 @@ class FavoriteProductsApi(viewsets.GenericViewSet, mixins.ListModelMixin, mixins
     serializer_class = FavoriteProductSerilizer
     
     def list(self, request, format=None):
-        profile = request.user.profile
-        products = profile.favorite_products.all().order_by('-created_at').translated()
+        user = request.user
+        products = user.favorite_products.all().order_by('-favoriteproduct__created_at').translated()
         paginator = self.pagination_class()
         result_products = paginator.paginate_queryset(products, request, view=self)
         product_serializer = ProductListSerializer(result_products, many=True)
@@ -95,8 +95,8 @@ class FavoriteProductsApi(viewsets.GenericViewSet, mixins.ListModelMixin, mixins
     
     def create(self, request, *args, **kwargs):
         product_id = request.data['id']
-        profile_id = request.user.profile.id
-        serializer = self.get_serializer(data={'product': product_id, 'user': profile_id})
+        user_id = request.user.id
+        serializer = self.get_serializer(data={'product': product_id, 'user': user_id})
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
@@ -105,7 +105,7 @@ class FavoriteProductsApi(viewsets.GenericViewSet, mixins.ListModelMixin, mixins
     def get_object(self):
         queryset = self.get_queryset()
         queryset = self.filter_queryset(queryset)
-        filter_kwargs = {'user': self.request.user.profile.id, 'product': self.kwargs['pk']}
+        filter_kwargs = {'user': self.request.user.id, 'product': self.kwargs['pk']}
         obj = get_object_or_404(queryset, **filter_kwargs)
         self.check_object_permissions(self.request, obj)
         return obj
@@ -117,15 +117,15 @@ class FavoriteBrandsApi(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.C
     serializer_class = FavoriteBrandSerilizer
     
     def list(self, request, format=None):
-        profile = request.user.profile
-        brands = profile.favorite_brands.all().order_by('translations__name').translated()
+        user = request.user
+        brands = user.favorite_brands.all().order_by('translations__name').translated()
         brand_serializer = BrandSerializer(brands, many=True)
         return Response(brand_serializer.data, status=200)
     
     def create(self, request, *args, **kwargs):
         brand_id = request.data['id']
-        profile_id = request.user.profile.id
-        serializer = self.get_serializer(data={'brand': brand_id, 'user': profile_id})
+        user_id = request.user.id
+        serializer = self.get_serializer(data={'brand': brand_id, 'user': user_id})
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
@@ -134,7 +134,7 @@ class FavoriteBrandsApi(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.C
     def get_object(self):
         queryset = self.get_queryset()
         queryset = self.filter_queryset(queryset)
-        filter_kwargs = {'user': self.request.user.profile.id, 'brand': self.kwargs['pk']}
+        filter_kwargs = {'user': self.request.user.id, 'brand': self.kwargs['pk']}
         obj = get_object_or_404(queryset, **filter_kwargs)
         self.check_object_permissions(self.request, obj)
         return obj

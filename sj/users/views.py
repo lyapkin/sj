@@ -7,8 +7,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.utils import timezone
 
-from .models import Otp, FavoriteProduct
-from .serializers import OtpSerializer, UserSerializer, FavoriteProductSerializer
+from .models import Otp, FavoriteProduct, FavoriteBrand
+from .serializers import OtpSerializer, UserSerializer, FavoriteProductSerializer, FavoriteBrandSerializer
 from .utils import create_otp, send_otp, clean_otp_db
 from django.contrib.auth import authenticate, login, logout
 from cart.serializers import CartSerializer
@@ -57,7 +57,8 @@ def confirm(request, *args, **kwargs):
     otp.delete()
     return Response({**UserSerializer(request.user).data,
                      'cart': CartSerializer(Cart.objects.filter(user=request.user), many=True).data,
-                     'favorite_products': FavoriteProductSerializer(FavoriteProduct.objects.filter(user=request.user), many=True).data
+                     'favorite_products': FavoriteProductSerializer(FavoriteProduct.objects.filter(user=request.user), many=True).data,
+                     'favorite_brands': FavoriteBrandSerializer(FavoriteBrand.objects.filter(user=request.user), many=True).data
     }, status=200)
 
 
@@ -74,5 +75,6 @@ def check_auth(request, *args, **kwargs):
     # print(Cart.objects.filter(request.user))
     return Response({**UserSerializer(request.user).data, 
                      'cart': CartSerializer(Cart.objects.filter(user=request.user), many=True).data,
-                     'favorite_products': FavoriteProductSerializer(FavoriteProduct.objects.filter(user=request.user), many=True).data
+                     'favorite_products': FavoriteProductSerializer(FavoriteProduct.objects.filter(user=request.user), many=True).data,
+                     'favorite_brands': FavoriteBrandSerializer(FavoriteBrand.objects.filter(user=request.user), many=True).data
     }, status=200)

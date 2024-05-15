@@ -581,7 +581,7 @@ current_price (цена со скидкой)
 ```
 
 
-# Избранное
+# Избранные продукты
 
 Добавление продукта в избранное
 ```
@@ -599,7 +599,7 @@ Response:
 }
 ```
 
-Список продуктов
+Список избранных продуктов
 ```
 /[ru | en]/api/products/favorite-products/ GET auth-required
 {
@@ -631,11 +631,14 @@ Response:
 }
 ```
 
-Удаление продукта
+Удаление продукта из избранного
 ```
 /[ru | en]/api/products/favorite-products/16/ DELETE
 Response 204
 ```
+
+
+# Избранные бренды
 
 Добавление бренда в избранное
 ```
@@ -653,7 +656,7 @@ Response:
 }
 ```
 
-Список продуктов
+Список избранных брендов
 ```
 /[ru | en]/api/products/favorite-brands/ GET auth-required
 [
@@ -665,7 +668,7 @@ Response:
 ]
 ```
 
-Удаление продукта
+Удаление бренда из избранного
 ```
 /[ru | en]/api/products/favorite-brands/1/ DELETE
 Response 204

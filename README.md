@@ -651,7 +651,7 @@ Request:
 
 Response:
 201 {
-    "product": 1,
+    "brand": 1,
     "user": 1
 }
 ```

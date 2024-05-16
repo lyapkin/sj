@@ -47,6 +47,7 @@ class CartApi(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModel
     def destroy(self, request, *args, **kwargs):
         response = super().destroy(request, *args, **kwargs)
         response.data = self.get_serializer(self.get_queryset().filter(user=request.user.id), many=True).data
+        response.status_code = status.HTTP_200_OK
         return response
     
     def get_object(self):
@@ -61,7 +62,7 @@ class CartApi(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModel
     def clean(self, request):
         self.get_queryset().filter(user=request.user.id).delete()
         data = self.get_queryset().filter(user=request.user.id)
-        return Response(self.get_serializer(data, many=True).data, status=status.HTTP_204_NO_CONTENT)
+        return Response(self.get_serializer(data, many=True).data, status=status.HTTP_200_OK)
 
     # def get_queryset(self):
     #     return super().get_queryset().translated()

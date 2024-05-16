@@ -56,8 +56,8 @@ def confirm(request, *args, **kwargs):
     login(request, user)
     otp.delete()
     return Response({**UserSerializer(request.user).data,
-                     'cart': CartSerializer(Cart.objects.filter(user=request.user), many=True).data,
-                     'favorite_products': FavoriteProductSerializer(FavoriteProduct.objects.filter(user=request.user), many=True).data,
+                     'cart': CartSerializer(Cart.objects.filter(user=request.user).order_by('-id'), many=True).data,
+                     'favorite_products': FavoriteProductSerializer(FavoriteProduct.objects.filter(user=request.user).order_by('-id'), many=True).data,
                      'favorite_brands': FavoriteBrandSerializer(FavoriteBrand.objects.filter(user=request.user), many=True).data
     }, status=200)
 
@@ -74,7 +74,7 @@ def logout_view(request, *args, **kwargs):
 def check_auth(request, *args, **kwargs):
     # print(Cart.objects.filter(request.user))
     return Response({**UserSerializer(request.user).data, 
-                     'cart': CartSerializer(Cart.objects.filter(user=request.user), many=True).data,
-                     'favorite_products': FavoriteProductSerializer(FavoriteProduct.objects.filter(user=request.user), many=True).data,
+                     'cart': CartSerializer(Cart.objects.filter(user=request.user).order_by('-id'), many=True).data,
+                     'favorite_products': FavoriteProductSerializer(FavoriteProduct.objects.filter(user=request.user).order_by('-id'), many=True).data,
                      'favorite_brands': FavoriteBrandSerializer(FavoriteBrand.objects.filter(user=request.user), many=True).data
     }, status=200)

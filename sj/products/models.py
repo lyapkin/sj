@@ -85,7 +85,7 @@ class SuperCategory(TranslatableModel):
 
         link_list.reverse()
 
-        link = translate_url(reverse('products-catalog'), language_code) + '/'.join(link_list) + '/'
+        link = '/'.join(link_list) + '/'
 
         if sort_by is not None:
             link = link + '?sort=' + sort_by
@@ -166,7 +166,7 @@ class Brand(TranslatableModel):
     
     def construct_link(self, language_code, sort_by=None):
         self.set_current_language(language_code)
-        link = translate_url(reverse('products-brands'), language_code) + self.slug + '/'
+        link = self.slug + '/'
     
         if sort_by is not None:
             link = link + '?sort=' + sort_by
@@ -225,7 +225,7 @@ class Product(TranslatableModel):
     
     def construct_link(self, language_code):
         self.set_current_language(language_code)
-        return translate_url(reverse('products-item-detail', kwargs={'translations__slug': self.slug}), self.language_code)
+        return self.slug + '/'
 
 
 class ProductImg(models.Model):

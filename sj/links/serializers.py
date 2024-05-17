@@ -6,6 +6,7 @@ from .models import *
 
 
 class SliderSerializer(serializers.ModelSerializer):
+    type = serializers.SerializerMethodField()
 
     class Meta:
         model = Slider
@@ -14,25 +15,35 @@ class SliderSerializer(serializers.ModelSerializer):
             'title',
             'text',
             'button_text',
+            'type',
             'link',
             'img',
         )
+
+    def get_type(self, obj):
+        return obj.get_type_display()
     
 
 class TabSerializer(serializers.ModelSerializer):
+    type = serializers.SerializerMethodField()
 
     class Meta:
         model = PopularTab
         fields = (
             'id',
             'title',
+            'type',
             'link',
             'img',
             'background'
         )
 
+    def get_type(self, obj):
+        return obj.get_type_display()
+
 
 class ModuleSerializer(serializers.ModelSerializer):
+    type = serializers.SerializerMethodField()
 
     class Meta:
         model = Module
@@ -41,7 +52,11 @@ class ModuleSerializer(serializers.ModelSerializer):
             'title',
             'text',
             'button_text',
+            'type',
             'link',
             'img',
             'background'
         )
+
+    def get_type(self, obj):
+        return obj.get_type_display()

@@ -72,7 +72,6 @@ def logout_view(request, *args, **kwargs):
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def check_auth(request, *args, **kwargs):
-    # print(Cart.objects.filter(request.user))
     return Response({**UserSerializer(request.user).data, 
                      'cart': CartSerializer(Cart.objects.filter(user=request.user).order_by('-id'), many=True).data,
                      'favorite_products': FavoriteProductSerializer(FavoriteProduct.objects.filter(user=request.user).order_by('-id'), many=True).data,

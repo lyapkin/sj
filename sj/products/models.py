@@ -1,4 +1,6 @@
+import os
 from django.db import models
+from django.urls import reverse, translate_url
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from parler.models import TranslatableModel, TranslatedFields
@@ -62,6 +64,33 @@ class SuperCategory(TranslatableModel):
             return str(self.subcategory)
         except SuperCategory.subcategory.RelatedObjectDoesNotExist:
             return str(self.category)
+        
+    def construct_link(self, language_code, sort_by=None):
+        link_list = []
+        instance = self
+        try:
+            instance = self.subcategory
+            instance.set_current_language(language_code)
+            link_list.append(instance.slug)
+            while instance.parent:
+                instance = instance.parent
+                instance = instance.subcategory
+                instance.set_current_language(language_code)
+                link_list.append(instance.slug)
+
+        except SuperCategory.subcategory.RelatedObjectDoesNotExist:
+            instance = instance.category
+            instance.set_current_language(language_code)
+            link_list.append(instance.slug)
+
+        link_list.reverse()
+
+        link = translate_url(reverse('products-catalog'), language_code) + '/'.join(link_list) + '/'
+
+        if sort_by is not None:
+            link = link + '?sort=' + sort_by
+
+        return link
 
 
 class Category(SuperCategory):
@@ -134,6 +163,15 @@ class Brand(TranslatableModel):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.slug.strip())
         return super().save(*args, **kwargs)
+    
+    def construct_link(self, language_code, sort_by=None):
+        self.set_current_language(language_code)
+        link = translate_url(reverse('products-brands'), language_code) + self.slug + '/'
+    
+        if sort_by is not None:
+            link = link + '?sort=' + sort_by
+            
+        return link
 
 
 class ProductType(TranslatableModel):
@@ -184,6 +222,10 @@ class Product(TranslatableModel):
             self.slug = generate_unique_slug_translated(Product, self.name)
         obj = super().save(*args, **kwargs)
         return obj
+    
+    def construct_link(self, language_code):
+        self.set_current_language(language_code)
+        return translate_url(reverse('products-item-detail', kwargs={'translations__slug': self.slug}), self.language_code)
 
 
 class ProductImg(models.Model):

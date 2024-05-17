@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     'docs',
     'faq',
     'cart',
+    'links',
 ]
 
 MIDDLEWARE = [

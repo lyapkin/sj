@@ -22,7 +22,6 @@ class CartApi(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModel
             self.kwargs['pk'] = request.data['id']
             response = self.update(request, partial=True, *args, **kwargs)
         except Http404:
-            print('create')
             data = {
                 'product': request.data['id'],
                 'user': request.user.id,

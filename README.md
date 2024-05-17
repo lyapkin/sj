@@ -806,3 +806,82 @@ Response status: 204
 
 Response status: 204
 ```
+
+
+# Слайдер, табы на главной
+slides - первый экран
+tabs - под первы экраном
+modules - над футером
+```
+/[ru | en]/api/links/ GET
+{
+    "slides": [
+        {
+            "id": 15,
+            "title": "заголовок2",
+            "text": "текст",
+            "button_text": "текст ссылки2",
+            "link": "/ru/api/products/catalog/pervaia-angl/",
+            "img": "/media/images/links/slider/2024/05/17/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2024-05-16_103633_e4uNMDz.png"
+        },
+        {
+            "id": 14,
+            "title": "заголовок",
+            "text": "текст",
+            "button_text": "текст ссылки",
+            "link": "/ru/api/products/catalog/pervaia/",
+            "img": "/media/images/links/slider/2024/05/17/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2024-05-16_103633.png"
+        }
+    ],
+    "tabs": [
+        {
+            "id": 1,
+            "title": "заголовок",
+            "link": "/ru/api/products/catalog/pervaia/?sort=popularity",
+            "img": "/media/images/links/tab/2024/05/17/Card.png",
+            "background": "/media/images/links/tab/2024/05/17/background/Card.jpg"
+        },
+        {
+            "id": 2,
+            "title": "заголовок2",
+            "link": "/ru/api/products/catalog/pervaia-angl/?sort=popularity",
+            "img": "/media/images/links/tab/2024/05/17/Card_WGwLJkq.png",
+            "background": "/media/images/links/tab/2024/05/17/background/Card_Ne1KQci.jpg"
+        },
+        {
+            "id": 3,
+            "title": "заголовок3",
+            "link": "/ru/api/products/catalog/pervaia/vtoraia/tretia/?sort=popularity",
+            "img": "/media/images/links/tab/2024/05/17/Card_yj1fZO2.png",
+            "background": "/media/images/links/tab/2024/05/17/background/Card_tt9lFPD.jpg"
+        },
+        {
+            "id": 4,
+            "title": "заголовок4",
+            "link": "/ru/api/products/brands/brand-1/?sort=popularity",
+            "img": "/media/images/links/tab/2024/05/17/Card_nJcErWB.png",
+            "background": "/media/images/links/tab/2024/05/17/background/Card_xGoJNry.jpg"
+        }
+    ],
+    "modules": [
+        {
+            "id": 1,
+            "title": "Заголовок",
+            "text": "текст",
+            "button_text": "текст ссылки",
+            "link": "/ru/api/products/catalog/pervaia-angl/vtoraia-4-angl/",
+            "img": "/media/images/links/module/2024/05/17/Card.png",
+            "background": "/media/images/links/module/2024/05/17/background/Card.jpg"
+        },
+        {
+            "id": 2,
+            "title": "заголовок2",
+            "text": "текст",
+            "button_text": "текст ссылки",
+            "link": "/ru/api/products/brands/brand-1/",
+            "img": "/media/images/links/module/2024/05/17/Card_BnU2xB8.png",
+            "background": "/media/images/links/module/2024/05/17/background/Card_iIOSnVi.jpg"
+        }
+    ]
+}
+```

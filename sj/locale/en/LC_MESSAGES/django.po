@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 00:32+0500\n"
+"POT-Creation-Date: 2024-05-20 01:50+0500\n"
 "PO-Revision-Date: 2024-05-20 01:33+0500\n"
 "Last-Translator: Anonymous User <admin@admin.admin>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,7 +191,7 @@ msgstr "product charachteristic values"
 msgid "category_name"
 msgstr "category name"
 
-#: .\products\models.py:57 .\products\models.py:203
+#: .\products\models.py:57 .\products\models.py:207
 msgid "order"
 msgstr "position in products list"
 
@@ -227,8 +227,7 @@ msgstr "Brand country"
 msgid "brand_countries"
 msgstr "brand countries"
 
-#: .\products\models.py:151 .\products\models.py:160
-#: .\products\services.py:163
+#: .\products\models.py:151 .\products\models.py:160 .\products\services.py:163
 msgid "brand"
 msgstr "Brand"
 
@@ -236,52 +235,64 @@ msgstr "Brand"
 msgid "brands"
 msgstr ""
 
-#: .\products\models.py:179 .\products\models.py:208
+#: .\products\models.py:179 .\products\models.py:187 .\products\models.py:212
 #: .\products\services.py:162
 msgid "product_type"
 msgstr "Product type"
 
-#: .\products\models.py:195
+#: .\products\models.py:188
+#, fuzzy
+#| msgid "product_type"
+msgid "product_types"
+msgstr "Product type"
+
+#: .\products\models.py:199
 msgid "product_name"
 msgstr "product name"
 
-#: .\products\models.py:197
+#: .\products\models.py:201
 msgid "description"
 msgstr ""
 
-#: .\products\models.py:199
+#: .\products\models.py:203
 msgid "presence"
 msgstr "is present"
 
-#: .\products\models.py:200
+#: .\products\models.py:204
 msgid "is_prioritized"
 msgstr "is prioritized"
 
-#: .\products\models.py:201
+#: .\products\models.py:205
 msgid "actual_price"
 msgstr "actual price"
 
-#: .\products\models.py:202
+#: .\products\models.py:206
 msgid "current_price"
 msgstr "current price (discounted)"
 
-#: .\products\models.py:204
+#: .\products\models.py:208
 msgid "part_number"
 msgstr "part number"
 
-#: .\products\models.py:209
+#: .\products\models.py:213
 msgid "product_brand"
 msgstr "product brand"
 
-#: .\products\models.py:232 .\products\models.py:239
-msgid "product_img"
-msgstr "image"
-
-#: .\products\models.py:233
+#: .\products\models.py:225 .\products\models.py:241
 msgid "product"
 msgstr ""
 
-#: .\products\models.py:240
+#: .\products\models.py:226
+#, fuzzy
+#| msgid "product_imgs"
+msgid "products"
+msgstr "images"
+
+#: .\products\models.py:240 .\products\models.py:247
+msgid "product_img"
+msgstr "image"
+
+#: .\products\models.py:248
 msgid "product_imgs"
 msgstr "images"
 

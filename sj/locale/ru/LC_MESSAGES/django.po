@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 00:32+0500\n"
-"PO-Revision-Date: 2024-05-20 01:11+0500\n"
+"POT-Creation-Date: 2024-05-20 01:50+0500\n"
+"PO-Revision-Date: 2024-05-20 01:53+0500\n"
 "Last-Translator: Anonymous User <admin@admin.admin>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -191,7 +191,7 @@ msgstr "значения характеристик товаров"
 msgid "category_name"
 msgstr "название категории"
 
-#: .\products\models.py:57 .\products\models.py:203
+#: .\products\models.py:57 .\products\models.py:207
 msgid "order"
 msgstr "позиция в выдаче"
 
@@ -236,52 +236,62 @@ msgstr "Бренд"
 msgid "brands"
 msgstr "бренды"
 
-#: .\products\models.py:179 .\products\models.py:208
+#: .\products\models.py:179 .\products\models.py:187 .\products\models.py:212
 #: .\products\services.py:162
 msgid "product_type"
 msgstr "Тип продукта"
 
-#: .\products\models.py:195
+#: .\products\models.py:188
+#| msgid "product_type"
+msgid "product_types"
+msgstr "типы продукции"
+
+#: .\products\models.py:199
 msgid "product_name"
 msgstr "название продукта"
 
-#: .\products\models.py:197
+#: .\products\models.py:201
 msgid "description"
 msgstr "описание"
 
-#: .\products\models.py:199
+#: .\products\models.py:203
 msgid "presence"
 msgstr "наличие"
 
-#: .\products\models.py:200
+#: .\products\models.py:204
 msgid "is_prioritized"
 msgstr "приоритетный"
 
-#: .\products\models.py:201
+#: .\products\models.py:205
 msgid "actual_price"
 msgstr "цена товара"
 
-#: .\products\models.py:202
+#: .\products\models.py:206
 msgid "current_price"
 msgstr "текущая цена товара (с учетом скидки)"
 
-#: .\products\models.py:204
+#: .\products\models.py:208
 msgid "part_number"
 msgstr "артикул"
 
-#: .\products\models.py:209
+#: .\products\models.py:213
 msgid "product_brand"
 msgstr "бренд товара"
 
-#: .\products\models.py:232 .\products\models.py:239
-msgid "product_img"
-msgstr "изображение товара"
-
-#: .\products\models.py:233
+#: .\products\models.py:225 .\products\models.py:241
 msgid "product"
 msgstr "товар"
 
-#: .\products\models.py:240
+#: .\products\models.py:226
+#| msgid "product"
+msgid "products"
+msgstr "товары"
+
+#: .\products\models.py:240 .\products\models.py:247
+msgid "product_img"
+msgstr "изображение товара"
+
+#: .\products\models.py:248
 msgid "product_imgs"
 msgstr "изображения товаров"
 

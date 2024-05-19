@@ -182,6 +182,10 @@ class ProductType(TranslatableModel):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = _("product_type")
+        verbose_name_plural = _("product_types")
 
     def save(self, *args, **kwargs):
         if not self.slug.strip():
@@ -216,6 +220,10 @@ class Product(TranslatableModel):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = _("product")
+        verbose_name_plural = _("products")
 
     def save(self, *args, **kwargs):
         if not self.slug.strip():

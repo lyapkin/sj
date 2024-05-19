@@ -52,7 +52,7 @@ class SuperCategory(TranslatableModel):
         name = models.CharField(_('category_name'), max_length=40, unique=True),
         slug = models.SlugField('url', max_length=50, unique=True)
     )
-    charachteristic = models.ManyToManyField(Charachteristic, blank=True)
+    charachteristic = models.ManyToManyField(Charachteristic, blank=True, verbose_name=_('filter_char'))
 
     order = models.PositiveSmallIntegerField(_('order'), default=32000)
 
@@ -152,6 +152,8 @@ class Brand(TranslatableModel):
     )
     slug = models.SlugField('url', max_length=90, unique=True)
     country = models.ForeignKey(BrandCountry, on_delete=models.SET_NULL, related_name='brands', null=True, verbose_name=_('country'))
+
+    charachteristic = models.ManyToManyField(Charachteristic, blank=True, verbose_name=_('filter_char'))
 
     def __str__(self):
         return self.name

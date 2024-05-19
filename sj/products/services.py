@@ -148,8 +148,15 @@ def get_types():
     return types
 
 
-def get_charachteristics():
-    charachteristics = Charachteristic.objects.translated()
+def get_charachteristics(brand=None, category=None):
+    if category is not None:
+        cat = SuperCategory.objects.filter(translations__slug=category[0]).first()
+        charachteristics = cat.charachteristic.translated() if cat is not None else Charachteristic.objects.translated()
+    elif brand is not None:
+        brand = Brand.objects.filter(slug=brand[0]).first()
+        charachteristics = brand.charachteristic.translated() if brand is not None else Charachteristic.objects.translated()
+    else:
+        charachteristics = Charachteristic.objects.translated()
     return charachteristics
 
 

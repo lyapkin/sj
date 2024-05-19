@@ -53,7 +53,7 @@ class FiltersApi(views.APIView):
     def get(self, request, format=None):
         brands = get_brands()
         types = get_types()
-        charachteristics = get_charachteristics()
+        charachteristics = get_charachteristics(**request.query_params)
         countries = get_brand_countries()
         filters = serialize_filters(types, brands, countries, charachteristics)
         return Response(filters, status=200)

@@ -44,7 +44,7 @@ class BrandCountryAdmin(TranslatableAdmin):
 
 class BrandAdmin(TranslatableAdmin):
     list_display = ['name']
-    fields = ('name', 'country', 'slug')
+    fields = ('name', 'country', 'slug', 'charachteristic')
 
     def get_queryset(self, request):
         # Limit to a single language!
